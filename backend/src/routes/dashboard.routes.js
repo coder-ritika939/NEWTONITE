@@ -16,25 +16,25 @@ router.get('/summary', async (req, res, next) => {
     const params = user.role === 'ADMIN' ? [] : [user.team_id];
 
     // 1. Assigned to Me
-    const [assignedRows] = await db.query(
+      const assignedRows = await db.query(
       `SELECT COUNT(*) as count FROM work_items wi WHERE wi.assignee_id = ? AND wi.status NOT IN ('RESOLVED', 'CLOSED', 'CANCELLED')`,
       [user.id]
     );
 
     // 2. Unassigned Urgent
-    const [urgentRows] = await db.query(
+    const urgentRows = await db.query(
       `SELECT COUNT(*) as count FROM work_items wi WHERE wi.assignee_id IS NULL AND wi.priority = 'URGENT' AND wi.status IN ('OPEN', 'DRAFT') ${teamFilter}`,
       params
     );
 
     // 3. Awaiting Approval
-    const [approvalRows] = await db.query(
+    const approvalRows = await db.query(
       `SELECT COUNT(*) as count FROM work_items wi WHERE wi.status = 'PENDING_APPROVAL' ${teamFilter}`,
       params
     );
 
     // 4. Total Active Items
-    const [totalActiveRows] = await db.query(
+    const totalActiveRows = await db.query(
       `SELECT COUNT(*) as count FROM work_items wi WHERE wi.status NOT IN ('RESOLVED', 'CLOSED', 'CANCELLED') ${teamFilter}`,
       params
     );

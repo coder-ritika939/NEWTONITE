@@ -400,7 +400,7 @@ class WorkItemService {
 
     // Count total matching items
     const countQuery = `SELECT COUNT(*) as total FROM work_items wi ${whereSql}`;
-    const [countRows] = await db.query(countQuery, queryParams);
+    const countRows = await db.query(countQuery, queryParams);
     const total = countRows[0]?.total || 0;
 
     // Fetch paginated page
