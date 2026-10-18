@@ -1,0 +1,23 @@
+{
+  "name": "newtonite-ops-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Newtonite Ops - Full-stack Operational Work Items Management Platform",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "test:backend": "npm --prefix backend test",
+    "db:migrate": "npm --prefix backend run db:migrate",
+    "db:seed": "npm --prefix backend run db:seed"
+  },
+  "keywords": [
+    "work-items",
+    "concurrency",
+    "optimistic-locking",
+    "idempotency",
+    "rbac",
+    "mysql"
+  ],
+  "author": "",
+  "license": "ISC"
+}
